@@ -1,0 +1,17 @@
+import { connectToDB } from "@utils/database"
+
+import Prompt from "@models/prompt"
+
+export const GET = async (request) => {
+    try {
+        await connectToDB()
+
+        const prompts = await Prompt.find({}).populate('creator')
+
+        return new Response(JSON.stringify(prompts), { status: 200 })
+    } catch (e) {
+        console.error('Can\'t fetch post', e)
+
+        return new Response('Failed to fetch prompts', { status: 500 })
+    }
+}
