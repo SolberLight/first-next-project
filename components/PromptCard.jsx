@@ -30,7 +30,10 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             className="rounded-full object-contain"
           />
 
-          <div className="flex flex-col">
+          <div
+            className="flex flex-col"
+            onClick={() => router.push(`/profile/${post.creator._id}?name=${post.creator.username}`)}
+          >
             <h3 className="font-satoshi font-semibold text-gray-900">
               {post.creator.username}
             </h3>
